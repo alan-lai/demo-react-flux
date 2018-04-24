@@ -33,7 +33,9 @@ class Product extends Component {
                 <div className="item">
                     <div className="image"></div>
                     <div className="description">
-                        <div className="name">{ product.name }</div>
+                        <div className="name"><strong>{product.name}</strong></div>
+                        <div className="price">{ "$" + product.price.toFixed(2) }</div>
+                        <div className="description">{ product.description }</div>
                     </div>
                     <div className="form-group">
                         <input className="form-control" type="number" step="1" min="0" defaultValue="1" onChange={ (event) => { this.updateQty(event) } } />

@@ -3,7 +3,8 @@ import ProductStore from './stores/ProductStore';
 import * as ProductActions from './actions/ProductActions';
 import Catalogue from './components/Catalogue';
 import Cart from './components/Cart';
-import './App.css';
+import AddProductModal from './components/AddProductModal';
+import './styles/css/app.css';
 
 class App extends Component {
   constructor(props) {
@@ -11,10 +12,11 @@ class App extends Component {
     this.removeProductFromCart = this.removeProductFromCart.bind(this);
     this.state = {
       products: ProductStore.getAll(),
-      cartItems: []
+      cartItems: [],
+      showAddProductModal: false
     }
   }
-  
+
   addProductToCart(id, qty) {
     let updatedCartItems = [];
     let cartItems = this.state.cartItems;
@@ -47,8 +49,8 @@ class App extends Component {
     });
   }
 
-  createProduct() {
-    ProductActions.createProduct('Sandals', 35, 'New')
+  createProduct(name, price, description) {
+    ProductActions.createProduct(name, price, description)
   }
 
   removeProductFromCart(id) {
@@ -61,21 +63,28 @@ class App extends Component {
     });
   }
 
+  toggleAddProductModal() {
+    this.setState({
+      showAddProductModal: !this.state.showAddProductModal
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <Cart products={this.state.products} cartItems={this.state.cartItems} removeProductFromCart={this.removeProductFromCart}/>
-        <div className="summary"></div>
-        <div className="shop">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
+      <div className="app">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="shop col-12">
+              <Cart products={this.state.products} cartItems={this.state.cartItems} removeProductFromCart={this.removeProductFromCart}/>
+              <div className="summary"></div>
+              <div className="catalogue">
                 <Catalogue products={this.state.products} addProductToCart={this.addProductToCart.bind(this)} removeProductFromCart={this.removeProductFromCart} />
               </div>
             </div>
           </div>
         </div>
-        <button onClick={this.createProduct.bind(this)}></button>
+        <button id="btn-product-create" className="btn btn-primary" type="button" onClick={this.toggleAddProductModal.bind(this)}>Add new item</button>
+        <AddProductModal createProduct={this.createProduct.bind(this)} toggleAddProductModal={this.toggleAddProductModal.bind(this)} showAddProductModal={this.state.showAddProductModal}  />
       </div>
     );
   }

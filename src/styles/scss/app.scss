@@ -1,0 +1,141 @@
+@import '_base';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+$black: #000000;
+$brown: #795548;
+$indigo: #3F51B5;
+$red: #F44336;
+$white: #FFFFFF;
+
+.container-fluid {
+    max-width: 1200px;
+}
+.btn-default {
+    background-color: $brown;
+    color:#ffffff;
+
+    &:focus, &:hover {background-color:darken($brown, 15%);}
+}
+.modal {
+    background: transparentize($black, .7);
+    &.show {display: block;}
+    .modal-title {font-size: 2rem;}
+}
+
+.flex {
+    display: flex;
+}
+.flex-row {
+    @extend .flex;
+    flex-direction: row;
+}
+.flex-column {
+    @extend .flex;
+    flex-direction: column;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    background: $indigo;
+}
+
+button, input, select, textarea, .btn, .form-control {
+    font-size: 1.6rem;
+}
+
+    .app {
+        margin: 3rem 0 10rem;
+        padding: 1.5rem;
+    }
+        .shop {
+            background: $white;
+            padding: 1.5rem;
+            border-radius: .5rem;
+            box-shadow: .2rem .2rem .5rem transparentize($black, .7);
+        }
+
+        .cart {
+            
+            @extend .flex-row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem;
+
+            .cart-content {
+                font-size: 1.4rem;
+                padding: 1.25rem;
+                left: auto;
+                right: 0;
+
+                p {
+                    margin: 0;
+                }
+
+                ul {
+                    display: block;
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                    width: 30rem;
+                    
+                    li {
+                        grid-template-columns: 2fr 2fr 1fr 1fr;
+                        grid-gap: 1rem;
+                        display: grid;
+                        padding: 0;
+                        margin: 0;
+
+                        &:nth-of-type(n+2) {
+                            margin-top: .5rem;
+                            padding-top: .5rem;
+                            border-top: 1px solid transparentize($black, .7);
+                        }
+
+                        span {
+                            align-self: center;
+
+                            &.price, &.remove {
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+
+                .btn-default {
+                    background-color: $red;
+                    color: $white;
+                    width: 3rem;
+                    height: 3rem;
+                    line-height: 3rem;
+                    font-size: 1.4rem;
+                    text-align: center;
+                    padding: 0;
+                    
+                    &:focus, &:hover {
+                        background-color: darken($red, 15%);
+                    }
+                }
+            }
+        }
+
+        .catalogue {
+            .shop-items-list {
+                display: grid;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 1.5rem;
+
+                .shop-item {
+                    padding: 1.5rem;
+                    border: .2rem solid lighten($brown, 30%);
+                }
+            }
+        }
+
+#btn-product-create {position:fixed;bottom:1.5rem;right:1.5rem;z-index:2}
