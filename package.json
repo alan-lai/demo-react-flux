@@ -1,5 +1,5 @@
 {
-  "name": "demo-redux",
+  "name": "demo-flux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run compile-sass && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "compile-sass": "node-sass -w src/styles/scss/app.scss src/styles/css/app.css"
